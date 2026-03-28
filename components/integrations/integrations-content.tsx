@@ -500,10 +500,10 @@ export function IntegrationsContent() {
               {/* Header */}
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <h2 className="text-2xl font-bold text-white">
+                  <h2 className="text-2xl font-bold text-foreground">
                     {modalStep === 'gallery' ? 'Available Services' : `Configure ${selectedService?.name}`}
                   </h2>
-                  <p className="text-white/60 text-sm mt-1">
+                  <p className="text-muted-foreground text-sm mt-1">
                     {modalStep === 'gallery' 
                       ? 'Choose a service to integrate with Null Pointer' 
                       : `Set up the connection for your ${selectedService?.name} instance`}
@@ -514,9 +514,9 @@ export function IntegrationsContent() {
                     setShowModal(false);
                     setModalStep('gallery');
                   }}
-                  className="p-2 hover:bg-white/10 rounded-xl transition-colors"
+                  className="p-2 hover:bg-black/5 dark:hover:bg-white/10 rounded-xl transition-colors"
                 >
-                  <X className="w-5 h-5 text-white/70" />
+                  <X className="w-5 h-5 text-foreground/70" />
                 </button>
               </div>
 
@@ -532,7 +532,7 @@ export function IntegrationsContent() {
                         className={`px-4 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
                           filter === cat 
                             ? 'bg-green-500 text-black' 
-                            : 'bg-white/5 text-white/60 hover:bg-white/10'
+                            : 'bg-black/5 dark:bg-white/5 text-foreground/60 dark:text-white/60 hover:bg-black/10 dark:hover:bg-white/10'
                         }`}
                       >
                         {cat}
@@ -553,8 +553,8 @@ export function IntegrationsContent() {
                           className="group p-4 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 hover:border-green-500/50 transition-all text-left relative overflow-hidden"
                         >
                           <span className="text-3xl mb-3 block group-hover:scale-110 transition-transform">{i.icon}</span>
-                          <h4 className="font-bold text-white group-hover:text-green-400 transition-colors">{i.name}</h4>
-                          <p className="text-[10px] text-white/40 mt-1 line-clamp-2">{i.description}</p>
+                          <h4 className="font-bold text-foreground dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">{i.name}</h4>
+                          <p className="text-[10px] text-muted-foreground dark:text-white/40 mt-1 line-clamp-2">{i.description}</p>
                           {i.status === 'connected' && (
                             <div className="absolute top-2 right-2">
                               <CheckCircle className="w-4 h-4 text-green-500" />
@@ -573,8 +573,8 @@ export function IntegrationsContent() {
                   <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
                     <span className="text-4xl">{selectedService!.icon}</span>
                     <div>
-                      <h4 className="font-bold text-white">{selectedService!.name}</h4>
-                      <p className="text-xs text-white/60">{selectedService!.description}</p>
+                      <h4 className="font-bold text-foreground dark:text-white">{selectedService!.name}</h4>
+                      <p className="text-xs text-muted-foreground dark:text-white/60">{selectedService!.description}</p>
                     </div>
                     <button 
                       onClick={() => setModalStep('gallery')}
@@ -588,7 +588,7 @@ export function IntegrationsContent() {
                   <div className="space-y-4">
                     {(CONFIG_FIELDS[selectedService!.id] || [{ label: 'API Key', placeholder: 'Enter API Key', type: 'password' }]).map((field) => (
                       <div key={field.label}>
-                        <label className="block text-sm font-semibold text-white/80 mb-2">
+                        <label className="block text-sm font-semibold text-foreground/80 dark:text-white/80 mb-2">
                           {field.label}
                         </label>
                         {field.type === 'textarea' ? (
@@ -596,7 +596,7 @@ export function IntegrationsContent() {
                             placeholder={field.placeholder}
                             value={configData[field.label] || ''}
                             onChange={(e) => setConfigData({ ...configData, [field.label]: e.target.value })}
-                            className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-green-500/50 min-h-[100px] resize-none"
+                            className="w-full px-4 py-3 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-foreground dark:text-white placeholder-foreground/20 dark:placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-green-500/50 min-h-[100px] resize-none"
                           />
                         ) : (
                           <input
@@ -604,7 +604,7 @@ export function IntegrationsContent() {
                             placeholder={field.placeholder}
                             value={configData[field.label] || ''}
                             onChange={(e) => setConfigData({ ...configData, [field.label]: e.target.value })}
-                            className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-green-500/50 transition-all"
+                            className="w-full px-4 py-3 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-foreground dark:text-white placeholder-foreground/20 dark:placeholder-white/20 focus:outline-none focus:ring-2 focus:ring-green-500/50 transition-all"
                           />
                         )}
                       </div>
@@ -616,7 +616,7 @@ export function IntegrationsContent() {
                     <button
                       onClick={handleTestConnection}
                       disabled={testing}
-                      className="w-full h-12 rounded-xl border border-white/10 hover:bg-white/5 text-white/80 font-medium transition-all flex items-center justify-center gap-2"
+                      className="w-full h-12 rounded-xl border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/5 text-foreground/80 dark:text-white/80 font-medium transition-all flex items-center justify-center gap-2"
                     >
                       {testing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Cloud className="w-4 h-4" />}
                       {testing ? 'Verifying...' : 'Test Connection'}
@@ -647,7 +647,7 @@ export function IntegrationsContent() {
                           setSelectedService(null);
                           setConfigData({});
                         }}
-                        className="px-6 h-12 rounded-xl bg-white/5 hover:bg-white/10 text-white font-medium transition-all"
+                        className="px-6 h-12 rounded-xl bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10 text-foreground dark:text-white font-medium transition-all"
                       >
                         Back
                       </button>
