@@ -266,7 +266,11 @@ class LSTMServiceDetector:
             y_pred = self._lstm.predict(X)
             errors.append(float(np.mean((y_pred - y)**2)))
 
-        self._error_p95 = float(np.percentile(errors, 95)) if errors else 1.0
+        # Calibrate: use 99th-percentile training error * 3x safety margin.
+        # The 3x means live error must be 3× the worst training error before
+        # the score reaches 1.0. Without this, any natural live variance
+        # immediately clips to 1.0 (the false-positive problem).
+        self._error_p95 = float(np.percentile(errors, 99)) * 3.0 if errors else 1.0
         self._trained = True
         self._save()
         print(f"[LSTM] Trained {self.service}: {len(sequences)} sequences, "

@@ -33,9 +33,9 @@ features:
 detection:
   model: "ensemble"          # isolation_forest + lstm
   contamination: 0.05
-  anomaly_threshold: 0.55   # Lower threshold for ensemble
-  if_weight: 0.6             # IsolationForest dominates (reliable on synthetic data)
-  lstm_weight: 0.4           # LSTM contributes degradation signal
+  anomaly_threshold: 0.70   # Raised: IF alone needs ~0.85 to flag, LSTM assists
+  if_weight: 0.75            # IF dominates — more reliable on synthetic data
+  lstm_weight: 0.25          # LSTM assists — catches degradation IF misses
   lstm_seq_len: 10           # LSTM input window length
   lstm_hidden: 8             # LSTM hidden units (small = fast)
   lstm_epochs: 40            # Training epochs on normal data
