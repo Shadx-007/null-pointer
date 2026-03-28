@@ -14,8 +14,8 @@ type SelectedPlan = 'free' | 'pro' | 'enterprise' | null;
 
 export default function SignupPage() {
   const router = useRouter();
-  const [step, setStep] = useState<SignupStep>('plan');
-  const [selectedPlan, setSelectedPlan] = useState<SelectedPlan>(null);
+  const [step, setStep] = useState<SignupStep>('details');
+  const [selectedPlan, setSelectedPlan] = useState<SelectedPlan>('free');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -10,6 +10,7 @@ import {
   Plug,
   Settings,
   User,
+  UserPlus,
 } from 'lucide-react';
 import { UserProfileDropdown } from '@/components/user-profile-dropdown';
 
@@ -20,7 +21,7 @@ const navItems = [
   { href: '/logs', label: 'Logs', icon: FileText },
   { href: '/integrations', label: 'Integrations', icon: Plug },
   { href: '/settings', label: 'Settings', icon: Settings },
- 
+
 ];
 
 export function TopNav() {
@@ -47,11 +48,10 @@ export function TopNav() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                    isActive
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${isActive
                       ? 'bg-blue-100 dark:bg-green-500/20 text-blue-700 dark:text-green-400 border border-blue-300 dark:border-green-500/50'
                       : 'text-gray-600 dark:text-white/70 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-green-500/10'
-                  }`}
+                    }`}
                 >
                   <Icon className="w-4 h-4" />
                   <span>{item.label}</span>

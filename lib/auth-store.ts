@@ -21,7 +21,8 @@ type AuthState = {
   error: string | null;
 
   login: (email: string, password: string) => Promise<void>;
-  signup: (email: string, password: string, name?: string, plan?: string) => Promise<void>;
+  signup: (email: string, password: string) => Promise<void>;
+  updateUser: (data: Partial<User>) => void;
   logout: () => Promise<void>;
   clearError: () => void;
 };
@@ -40,7 +41,10 @@ export const useAuthStore = create<AuthState>((set) => ({
       const res = await signInWithEmailAndPassword(auth, email, password);
 
       set({
-        user: { email: res.user.email },
+        user: { 
+          email: res.user.email,
+          name: res.user.displayName 
+        },
         isAuthenticated: true,
         isLoading: false,
       });
@@ -59,7 +63,10 @@ export const useAuthStore = create<AuthState>((set) => ({
       const res = await createUserWithEmailAndPassword(auth, email, password);
 
       set({
-        user: { email: res.user.email },
+        user: { 
+          email: res.user.email,
+          name: res.user.displayName 
+        },
         isAuthenticated: true,
         isLoading: false,
       });
@@ -79,6 +86,10 @@ export const useAuthStore = create<AuthState>((set) => ({
     });
   },
 
+  updateUser: (data) => set((state) => ({
+    user: state.user ? { ...state.user, ...data } : null
+  })),
+
   clearError: () => set({ error: null }),
 }));
 
@@ -87,7 +98,10 @@ export const initializeAuth = () => {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       useAuthStore.setState({
-        user: { email: user.email },
+        user: { 
+          email: user.email,
+          name: user.displayName 
+        },
         isAuthenticated: true,
       });
     } else {

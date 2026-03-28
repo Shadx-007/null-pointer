@@ -99,12 +99,12 @@ export default function LoginPage() {
           {/* Demo box */}
           <motion.div
             variants={itemVariants}
-            className="mb-6 p-4 bg-blue-100 dark:bg-gradient-to-r dark:from-blue-500/20 dark:to-purple-500/20 border border-blue-300 dark:border-blue-500/30 rounded-xl"
+            className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/40 border border-blue-200 dark:border-blue-500/30 rounded-xl"
           >
-            <p className="text-xs text-blue-800 dark:text-blue-300 font-bold">
+            <p className="text-xs text-blue-900 dark:text-blue-200 font-bold">
               Demo credentials:
             </p>
-            <p className="text-xs text-blue-700 dark:text-blue-200 mt-1 font-semibold">
+            <p className="text-xs text-blue-800 dark:text-white mt-1 font-semibold">
               demo@nullpointer.com / demo123
             </p>
           </motion.div>

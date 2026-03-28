@@ -33,6 +33,7 @@ export default function ProfilePage() {
         await updateProfile(auth.currentUser, {
           displayName: name,
         });
+        useAuthStore.getState().updateUser({ name });
       }
 
       setEditing(false);
